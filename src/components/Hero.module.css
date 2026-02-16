@@ -1,5 +1,6 @@
 .hero {
   position: relative;
+  z-index: 1;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -36,7 +37,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   pointer-events: none;
-  animation: float 8s ease-in-out infinite;
+  animation: float 10s ease-in-out infinite;
 }
 
 [data-theme="light"] .hero::after {

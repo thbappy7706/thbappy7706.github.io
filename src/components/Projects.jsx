@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useStaggeredFade } from '../hooks/useScrollFade'
+import { useSectionTransition } from '../hooks/useSectionTransition'
 import { SectionLabel } from './About'
 import styles from './Projects.module.css'
 
@@ -72,10 +73,17 @@ const sidehustles = [
 export default function Projects() {
   const [showAll, setShowAll] = useState(false)
   const displayed = showAll ? featured : featured.slice(0, 6)
-  const { ref, isVisible, getDelay } = useStaggeredFade(displayed.length, { delay: 80 })
+  const { ref: staggerRef, isVisible: staggerVisible, getDelay } = useStaggeredFade(displayed.length, { delay: 80 })
+  const { ref: sectionRef, isVisible: sectionVisible } = useSectionTransition({ threshold: 0.15 })
+
+  // Combine refs
+  const setRefs = (element) => {
+    staggerRef.current = element
+    sectionRef.current = element
+  }
 
   return (
-    <section className={styles.section} id="projects" ref={ref}>
+    <section className={`${styles.section} ${sectionVisible ? 'section-visible' : ''}`} id="projects" ref={setRefs}>
       <div className={styles.container}>
         <SectionLabel label="03" title="Projects" />
 
@@ -85,7 +93,7 @@ export default function Projects() {
               key={p.title}
               project={p}
               index={i}
-              isVisible={isVisible}
+              isVisible={staggerVisible}
               delay={getDelay(i)}
             />
           ))}

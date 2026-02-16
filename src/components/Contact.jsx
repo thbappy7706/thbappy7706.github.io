@@ -1,13 +1,13 @@
-import { useScrollFade } from '../hooks/useScrollFade'
+import { useSectionTransition } from '../hooks/useSectionTransition'
 import { SectionLabel } from './About'
 import styles from './Contact.module.css'
 
 export default function Contact() {
-  const { ref, isVisible } = useScrollFade({ threshold: 0.15 })
+  const { ref, isVisible } = useSectionTransition({ threshold: 0.15 })
 
   return (
-    <section className={styles.section} id="contact" ref={ref}>
-      <div className={`${styles.container} fade-in-section ${isVisible ? 'is-visible' : ''}`}>
+    <section className={`${styles.section} ${isVisible ? 'section-visible' : ''}`} id="contact" ref={ref}>
+      <div className={styles.container}>
         <SectionLabel label="04" title="Contact" />
 
         <div className={styles.inner}>

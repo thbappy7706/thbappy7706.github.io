@@ -13,6 +13,18 @@ export default function Navbar({ theme, toggleTheme }) {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [menuOpen])
+
   const handleNav = (e, id) => {
     e.preventDefault()
     setMenuOpen(false)
@@ -27,7 +39,15 @@ export default function Navbar({ theme, toggleTheme }) {
       </a>
 
       <div className={styles.navRight}>
-        <ul className={`${styles.links} ${menuOpen ? styles.open : ''}`}>
+        <ul
+          className={`${styles.links} ${menuOpen ? styles.open : ''}`}
+          onClick={(e) => {
+            // Close menu when clicking on the overlay (not on menu items)
+            if (e.target === e.currentTarget) {
+              setMenuOpen(false)
+            }
+          }}
+        >
           {links.map((l, i) => (
             <li key={l} style={{ animationDelay: menuOpen ? `${i * 0.05}s` : '0s' }}>
               <a href={`#${l.toLowerCase()}`} onClick={e => handleNav(e, l)}>
@@ -42,6 +62,7 @@ export default function Navbar({ theme, toggleTheme }) {
               href="https://drive.google.com/file/d/1g2Z5oPfgLM9JzR4KQ7bXnVi8wCm3uDhY/view"
               target="_blank"
               rel="noreferrer"
+              onClick={() => setMenuOpen(false)}
             >
               Resume
             </a>

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useScrollFade } from '../hooks/useScrollFade'
+import { useSectionTransition } from '../hooks/useSectionTransition'
 import { SectionLabel } from './About'
 import styles from './Experience.module.css'
 
@@ -54,11 +54,11 @@ const jobs = [
 
 export default function Experience() {
   const [active, setActive] = useState(0)
-  const { ref, isVisible } = useScrollFade({ threshold: 0.15 })
+  const { ref, isVisible } = useSectionTransition({ threshold: 0.15 })
 
   return (
-    <section className={styles.section} id="experience" ref={ref}>
-      <div className={`${styles.container} fade-in-section ${isVisible ? 'is-visible' : ''}`}>
+    <section className={`${styles.section} ${isVisible ? 'section-visible' : ''}`} id="experience" ref={ref}>
+      <div className={styles.container}>
         <SectionLabel label="02" title="Experience" />
 
         <div className={styles.layout}>

@@ -1,4 +1,4 @@
-import { useScrollFade } from '../hooks/useScrollFade'
+import { useSectionTransition } from '../hooks/useSectionTransition'
 import styles from './TechMarquee.module.css'
 
 const stack = [
@@ -9,10 +9,10 @@ const stack = [
 
 export default function TechMarquee() {
   const doubled = [...stack, ...stack]
-  const { ref, isVisible } = useScrollFade({ threshold: 0.2 })
+  const { ref, isVisible } = useSectionTransition({ threshold: 0.2 })
 
   return (
-    <div className={`${styles.wrapper} fade-in-scale ${isVisible ? 'is-visible' : ''}`} ref={ref}>
+    <div className={`${styles.wrapper} section-transition ${isVisible ? 'section-visible' : ''}`} ref={ref}>
       <div className={styles.track}>
         {doubled.map((item, i) => (
           <span key={i} className={styles.item}>

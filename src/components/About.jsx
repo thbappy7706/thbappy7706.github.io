@@ -1,4 +1,4 @@
-import { useScrollFade } from '../hooks/useScrollFade'
+import { useSectionTransition } from '../hooks/useSectionTransition'
 import styles from './About.module.css'
 
 const skills = [
@@ -8,11 +8,11 @@ const skills = [
 ]
 
 export default function About() {
-  const { ref, isVisible } = useScrollFade({ threshold: 0.15 })
+  const { ref, isVisible } = useSectionTransition({ threshold: 0.15 })
 
   return (
-    <section className={styles.section} id="about" ref={ref}>
-      <div className={`${styles.container} fade-in-section ${isVisible ? 'is-visible' : ''}`}>
+    <section className={`${styles.section} ${isVisible ? 'section-visible' : ''}`} id="about" ref={ref}>
+      <div className={styles.container}>
         <SectionLabel label="01" title="About" />
 
         <div className={styles.grid}>

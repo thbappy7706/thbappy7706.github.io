@@ -1,0 +1,71 @@
+.scrollToTop {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 48px;
+  height: 48px;
+  background: var(--accent);
+  border: none;
+  border-radius: 50%;
+  color: var(--bg);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px) scale(0.8);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 9998;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  filter: none !important;
+}
+
+[data-theme="light"] .scrollToTop {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.scrollToTop.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.scrollToTop:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="light"] .scrollToTop:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.scrollToTop:active {
+  transform: translateY(-2px) scale(1);
+}
+
+.scrollToTop svg {
+  transition: transform 0.3s ease;
+}
+
+.scrollToTop:hover svg {
+  transform: translateY(-2px);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .scrollToTop {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* Ensure it doesn't interfere with mobile menu */
+@media (max-width: 768px) {
+  .scrollToTop {
+    z-index: 9998; /* Below mobile menu (9999) but above sections */
+  }
+}
+

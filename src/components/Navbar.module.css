@@ -3,13 +3,20 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100;
+  z-index: 10001;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1.5rem 4rem;
   transition: background 0.3s, backdrop-filter 0.3s, padding 0.3s, border-color 0.3s;
   border-bottom: 1px solid transparent;
+  filter: none !important;
+  opacity: 1 !important;
+  isolation: isolate;
+}
+
+.nav * {
+  filter: none !important;
 }
 
 .nav.scrolled {
@@ -35,6 +42,10 @@
   align-items: center;
   gap: 0.35rem;
   text-decoration: none;
+  filter: none !important;
+  opacity: 1 !important;
+  z-index: 10002;
+  position: relative;
 }
 
 .logoText {
@@ -59,6 +70,8 @@
   align-items: center;
   gap: 2rem;
   list-style: none;
+  filter: none !important;
+  opacity: 1 !important;
 }
 
 .links a {
@@ -107,6 +120,10 @@
   cursor: pointer;
   transition: all 0.3s ease;
   padding: 0;
+  filter: none !important;
+  opacity: 1 !important;
+  z-index: 10002;
+  position: relative;
 }
 
 .themeToggle:hover {
@@ -129,6 +146,10 @@
   border: none;
   cursor: pointer;
   padding: 4px;
+  filter: none !important;
+  opacity: 1 !important;
+  z-index: 10002;
+  position: relative;
 }
 
 .burger span {
@@ -158,24 +179,51 @@
   .links {
     position: fixed;
     inset: 0;
-    background: rgba(10, 14, 26, 0.97);
-    backdrop-filter: blur(20px);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(10, 14, 26, 0.98);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 2.5rem;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 9999;
+    filter: none !important;
+    isolation: isolate;
   }
 
   [data-theme="light"] .links {
-    background: rgba(248, 250, 252, 0.97);
+    background: rgba(248, 250, 252, 0.98);
   }
 
   .links.open {
-    opacity: 1;
-    pointer-events: all;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: all !important;
+  }
+
+  .links.open li,
+  .links.open a,
+  .links.open * {
+    filter: none !important;
+    opacity: 1 !important;
+  }
+
+  .links li {
+    z-index: 10000;
+    position: relative;
+  }
+
+  .links a {
+    z-index: 10000;
+    position: relative;
   }
 
   .links.open li {

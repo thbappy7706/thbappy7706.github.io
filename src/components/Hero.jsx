@@ -1,8 +1,15 @@
+import { useSectionTransition } from '../hooks/useSectionTransition'
 import styles from './Hero.module.css'
 
 export default function Hero() {
+  const { ref, isVisible } = useSectionTransition({ threshold: 0.1 })
+
   return (
-    <section className={styles.hero} id="hero">
+    <section
+      ref={ref}
+      className={`${styles.hero} ${isVisible ? 'section-visible' : ''}`}
+      id="hero"
+    >
       <div className={styles.gridLines} aria-hidden="true" />
 
       <div className={styles.content}>

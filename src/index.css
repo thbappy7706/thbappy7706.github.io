@@ -221,3 +221,51 @@ body::before {
   opacity: 1;
   transform: scale(1);
 }
+
+/* Nuxt UI-like Page Transitions */
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+  filter: blur(1rem);
+}
+
+.page-enter-to,
+.page-leave-from {
+  opacity: 1;
+  filter: blur(0);
+}
+
+/* Section Transitions - Apply to all major sections */
+section,
+.section-transition {
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  isolation: isolate;
+}
+
+section.section-visible,
+.section-transition.section-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Apply blur effect only to section content, not the section itself */
+section > *:not(nav),
+.section-transition > *:not(nav) {
+  filter: blur(0.5rem);
+  transition: filter 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+section.section-visible > *:not(nav),
+.section-transition.section-visible > *:not(nav) {
+  filter: blur(0);
+}
