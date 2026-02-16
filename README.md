@@ -54,7 +54,7 @@ Your site will be live at **https://thbappy7706.github.io** within a few minutes
 
 ## 🛠 Stack
 
-- **React 18** — UI
+- **React 19** — UI
 - **Vite 5** — Build tool
 - **CSS Modules** — Scoped styling
 - **Google Fonts** — Bebas Neue + DM Mono + DM Sans
