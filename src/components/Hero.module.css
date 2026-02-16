@@ -14,8 +14,8 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   background-size: 60px 60px;
   mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
 }
@@ -58,7 +58,7 @@
 .profileWrapper {
   position: relative;
   margin-bottom: 2rem;
-  animation: fadeInScale 0.8s ease both;
+  animation: heroScale 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .profileImage {
@@ -147,7 +147,7 @@
   color: var(--text);
   margin-bottom: 0.5rem;
   line-height: 1.2;
-  animation: fadeInUp 0.7s 0.2s both;
+  animation: heroReveal 1.2s 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .accent {
@@ -162,7 +162,7 @@
   color: var(--accent);
   letter-spacing: 0.1em;
   margin-bottom: 1.5rem;
-  animation: fadeInUp 0.7s 0.3s both;
+  animation: heroReveal 1.2s 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .cursor {
@@ -183,7 +183,7 @@
   line-height: 1.8;
   margin-bottom: 2.5rem;
   font-weight: 300;
-  animation: fadeInUp 0.7s 0.4s both;
+  animation: heroReveal 1.2s 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 /* CTA buttons */
@@ -192,7 +192,7 @@
   gap: 1rem;
   align-items: center;
   margin-bottom: 2.5rem;
-  animation: fadeInUp 0.7s 0.5s both;
+  animation: heroReveal 1.2s 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .btnPrimary {
@@ -252,7 +252,7 @@
 .social {
   display: flex;
   gap: 1.5rem;
-  animation: fadeInUp 0.7s 0.6s both;
+  animation: heroReveal 1.2s 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
   justify-content: center;
   flex-wrap: wrap;
 }
@@ -344,5 +344,46 @@
 
   .social {
     gap: 1rem;
+  }
+}
+
+/* Nuxt UI-like Hero Animations */
+@keyframes heroReveal {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+    filter: blur(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes heroScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+    filter: blur(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes blinkCursor {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
   }
 }
