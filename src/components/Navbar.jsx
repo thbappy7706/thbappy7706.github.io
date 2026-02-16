@@ -32,7 +32,7 @@ export default function Navbar({ theme, toggleTheme }) {
   }
 
   return (
-    <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
+    <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''} ${menuOpen ? styles.navOpen : ''}`}>
       <a className={styles.logo} href="#" onClick={e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}>
         <span className={styles.logoText}>THB</span>
         <span className={styles.logoDot} />

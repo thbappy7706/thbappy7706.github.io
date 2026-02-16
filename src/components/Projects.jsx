@@ -57,6 +57,24 @@ const featured = [
 
 const sidehustles = [
   {
+    title: 'Real-Time Pizza Tracker',
+    desc: 'Real-time order tracking system with live status updates using WebSockets. Features interactive order placement and status monitoring from preparation to delivery.',
+    tags: ['Laravel', 'React', 'Inertia.js', 'Reverb'],
+    href: 'https://github.com/thbappy7706/Real-Time-Pizza-Tracker',
+  },
+  {
+    title: 'Skill Tracking App',
+    desc: 'Comprehensive skill management system for tracking proficiency and growth. Built with Filament v5 for a high-performance, reactive admin interface.',
+    tags: ['Laravel', 'Filament', 'Livewire'],
+    href: 'https://github.com/thbappy7706/Skill-Tracking-App',
+  },
+  {
+    title: 'DIU Charity Arcade',
+    desc: 'Crowdfunding platform for disaster relief allowing monetary and material donations. Facilitates community support for affected individuals.',
+    tags: ['Laravel', 'PHP', 'MySQL'],
+    href: 'https://github.com/thbappy7706/DIU-Charity-Arcade-A-Crowd-Funding-Web-Application',
+  },
+  {
     title: 'RBAC Boilerplate',
     desc: 'Robust Role-Based Access Control boilerplate integrating frontend and backend with user authentication, dynamic roles & permission management, and responsive UI with Dark/Light Mode.',
     tags: ['Laravel', 'Vue.js', 'Inertia.js'],
@@ -72,7 +90,11 @@ const sidehustles = [
 
 export default function Projects() {
   const [showAll, setShowAll] = useState(false)
+  const [showAllSide, setShowAllSide] = useState(false)
+
   const displayed = showAll ? featured : featured.slice(0, 6)
+  const displayedSide = showAllSide ? sidehustles : sidehustles.slice(0, 4)
+
   const { ref: staggerRef, isVisible: staggerVisible, getDelay } = useStaggeredFade(displayed.length, { delay: 80 })
   const { ref: sectionRef, isVisible: sectionVisible } = useSectionTransition({ threshold: 0.15 })
 
@@ -107,17 +129,25 @@ export default function Projects() {
           </div>
         )}
 
-        {/* Side Hustles */}
+        {/* Other Projects */}
         <div className={styles.sideSection}>
           <h3 className={styles.sideTitle}>
             <span className={styles.sideNum}>◆</span>
-            Side Projects
+            Other Projects
           </h3>
           <div className={styles.sideGrid}>
-            {sidehustles.map(p => (
+            {displayedSide.map(p => (
               <SideCard key={p.title} project={p} />
             ))}
           </div>
+
+          {!showAllSide && sidehustles.length > 4 && (
+            <div className={styles.showMore}>
+              <button className={styles.showMoreBtn} onClick={() => setShowAllSide(true)}>
+                Show more ({sidehustles.length - 4} more)
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </section>
@@ -170,7 +200,7 @@ function SideCard({ project }) {
 function FolderIcon() {
   return (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.5">
-      <path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/>
+      <path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z" />
     </svg>
   )
 }
@@ -178,7 +208,7 @@ function FolderIcon() {
 function TerminalIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.5">
-      <polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/>
+      <polyline points="4 17 10 11 4 5" /><line x1="12" y1="19" x2="20" y2="19" />
     </svg>
   )
 }
@@ -186,8 +216,8 @@ function TerminalIcon() {
 function ExternalIcon() {
   return (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
-      <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+      <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+      <polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" />
     </svg>
   )
 }

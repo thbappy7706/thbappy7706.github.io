@@ -233,4 +233,9 @@
   .links a {
     font-size: 0.9rem;
   }
+
+  .navOpen {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
 }
