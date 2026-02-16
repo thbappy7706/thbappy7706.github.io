@@ -1,0 +1,137 @@
+.section {
+  padding: 8rem 4rem 4rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 6rem;
+  align-items: start;
+}
+
+.textBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  letter-spacing: 0.04em;
+  color: var(--text);
+  line-height: 0.95;
+}
+
+.accentWord {
+  color: var(--accent);
+}
+
+.sub {
+  font-size: 0.98rem;
+  color: var(--text-dim);
+  line-height: 1.75;
+  font-weight: 300;
+  max-width: 420px;
+}
+
+.emailBtn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.85rem 2.25rem;
+  background: var(--accent);
+  color: #000;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 3px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.emailBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px var(--accent-glow);
+}
+
+/* Links */
+.linksTitle {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+
+.linksList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.contactLink {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.contactLink:first-child {
+  border-top: 1px solid var(--border);
+}
+
+.contactLink:hover .contactLabel {
+  color: var(--accent);
+}
+
+.contactLink:hover .contactArrow {
+  transform: translateX(5px);
+  color: var(--accent);
+}
+
+.contactLabel {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  width: 100px;
+  flex-shrink: 0;
+  transition: color 0.2s;
+}
+
+.contactHandle {
+  font-size: 0.88rem;
+  color: var(--text-dim);
+  flex: 1;
+}
+
+.contactArrow {
+  color: var(--text-muted);
+  transition: transform 0.2s, color 0.2s;
+}
+
+@media (max-width: 900px) {
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 5rem 1.5rem 3rem;
+  }
+}
