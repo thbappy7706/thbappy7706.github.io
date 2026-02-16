@@ -34,11 +34,11 @@
 .card:hover {
   transform: translateY(-5px);
   border-color: var(--accent);
-  box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
 }
 
 [data-theme="light"] .card:hover {
-  box-shadow: 0 16px 40px rgba(0,0,0,0.1);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
 }
 
 .cardHeader {
@@ -89,7 +89,7 @@
   letter-spacing: 0.04em;
 }
 
-.cardTag + .cardTag::before {
+.cardTag+.cardTag::before {
   content: '·';
   margin-right: 0.4rem;
   color: var(--border);
@@ -162,7 +162,7 @@
 
 .sideCard:hover {
   transform: translateY(-4px);
-  border-color: rgba(232,161,53,0.25);
+  border-color: rgba(232, 161, 53, 0.25);
 }
 
 .sideCardTop {
@@ -196,11 +196,42 @@
 }
 
 @media (max-width: 1024px) {
-  .grid { grid-template-columns: repeat(2, 1fr); }
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
-  .section { padding: 5rem 1.5rem; }
-  .grid { grid-template-columns: 1fr; }
-  .sideGrid { grid-template-columns: 1fr; }
+  .section {
+    padding: 5rem 1.5rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .sideGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .sideSection {
+    margin-top: 3rem;
+    padding-top: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 1.5rem;
+  }
+
+  .cardTitle {
+    font-size: 1rem;
+  }
+
+  .sideCard {
+    padding: 1.5rem;
+  }
 }

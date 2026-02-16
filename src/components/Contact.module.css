@@ -128,12 +128,64 @@
 @media (max-width: 900px) {
   .inner {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 4rem;
+  }
+
+  .textBlock {
+    align-items: center;
+    text-align: center;
+  }
+
+  .sub {
+    margin: 0 auto;
   }
 }
 
 @media (max-width: 768px) {
   .section {
-    padding: 5rem 1.5rem 3rem;
+    padding: 5rem 1.25rem 3rem;
+  }
+
+  .heading {
+    font-size: clamp(2.5rem, 10vw, 4rem);
+  }
+
+  .contactLink {
+    padding: 1.25rem 0;
+  }
+
+  .contactLabel {
+    width: 80px;
+    font-size: 0.65rem;
+  }
+
+  .contactHandle {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contactLink {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+
+  .contactLabel {
+    width: auto;
+  }
+
+  .contactHandle {
+    font-size: 0.85rem;
+    color: var(--accent);
+  }
+
+  .contactArrow {
+    display: none;
+  }
+
+  .emailBtn {
+    width: 100%;
+    justify-content: center;
   }
 }

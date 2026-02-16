@@ -168,24 +168,72 @@
 
   .layout {
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 2rem;
   }
 
   .tabs {
     flex-direction: row;
     border-left: none;
-    border-bottom: 2px solid var(--border);
+    border-bottom: 1px solid var(--border);
     overflow-x: auto;
+    width: 100%;
+    /* Ensure it spans full width */
+    padding-bottom: 1px;
+    /* Avoid border clipping */
+    -webkit-overflow-scrolling: touch;
+    /* Smooth scrolling on iOS */
+    scrollbar-width: none;
+    /* Firefox */
+  }
+
+  .tabs::-webkit-scrollbar {
+    display: none;
+    /* Chrome/Safari */
   }
 
   .tab {
     border-left: none;
     border-bottom: 2px solid transparent;
     margin-left: 0;
-    margin-bottom: -2px;
+    margin-bottom: -1px;
+    /* Align with bottom border */
+    white-space: nowrap;
+    padding: 0.85rem 1rem;
+    font-size: 0.75rem;
   }
 
   .activeTab {
     border-bottom-color: var(--accent) !important;
+    border-left-color: transparent !important;
+    background: transparent !important;
+    /* Remove background on mobile for cleaner look */
+    color: var(--accent) !important;
+  }
+
+  .panel {
+    min-height: auto;
+    /* Allow auto height on mobile */
+  }
+
+  .jobHeader {
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .period {
+    color: var(--accent);
+    font-size: 0.7rem;
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .role {
+    font-size: 1.1rem;
+  }
+
+  .bullet {
+    font-size: 0.85rem;
   }
 }
