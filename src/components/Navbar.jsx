@@ -1,7 +1,13 @@
 import { useState, useEffect } from 'react'
 import styles from './Navbar.module.css'
 
-const links = ['About', 'Experience', 'Projects', 'Contact']
+const navLinks = [
+  { name: 'About', path: 'about' },
+  { name: 'Experience', path: 'experience' },
+  { name: 'Projects', path: 'projects' },
+  { name: 'Writings', path: 'https://medium.com/@tanvirhossenbappy751', external: true },
+  { name: 'Contact', path: 'contact' },
+]
 
 export default function Navbar({ theme, toggleTheme }) {
   const [scrolled, setScrolled] = useState(false)
@@ -25,10 +31,11 @@ export default function Navbar({ theme, toggleTheme }) {
     }
   }, [menuOpen])
 
-  const handleNav = (e, id) => {
+  const handleNav = (e, link) => {
+    if (link.external) return
     e.preventDefault()
     setMenuOpen(false)
-    document.getElementById(id.toLowerCase())?.scrollIntoView({ behavior: 'smooth' })
+    document.getElementById(link.path.toLowerCase())?.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
@@ -48,11 +55,16 @@ export default function Navbar({ theme, toggleTheme }) {
             }
           }}
         >
-          {links.map((l, i) => (
-            <li key={l} style={{ animationDelay: menuOpen ? `${i * 0.05}s` : '0s' }}>
-              <a href={`#${l.toLowerCase()}`} onClick={e => handleNav(e, l)}>
+          {navLinks.map((l, i) => (
+            <li key={l.name} style={{ animationDelay: menuOpen ? `${i * 0.05}s` : '0s' }}>
+              <a
+                href={l.external ? l.path : `#${l.path}`}
+                target={l.external ? "_blank" : undefined}
+                rel={l.external ? "noreferrer" : undefined}
+                onClick={e => handleNav(e, l)}
+              >
                 <span className={styles.num}>0{i + 1}.</span>
-                {l}
+                {l.name}
               </a>
             </li>
           ))}

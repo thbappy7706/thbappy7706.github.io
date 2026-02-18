@@ -8,7 +8,7 @@ export default function Contact() {
   return (
     <section className={`${styles.section} ${isVisible ? 'section-visible' : ''}`} id="contact" ref={ref}>
       <div className={styles.container}>
-        <SectionLabel label="04" title="Contact" />
+        <SectionLabel label="05" title="Contact" />
 
         <div className={styles.inner}>
           <div className={styles.textBlock}>
