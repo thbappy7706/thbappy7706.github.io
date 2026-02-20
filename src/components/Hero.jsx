@@ -65,10 +65,10 @@ export default function Hero() {
           <a href="https://github.com/thbappy7706" target="_blank" rel="noreferrer" className={styles.socialLink}>
             <GithubIcon /> GitHub
           </a>
-          <a href="https://linkedin.com/in/tanvirhossenbappy" target="_blank" rel="noreferrer" className={styles.socialLink}>
+          <a href="https://www.linkedin.com/in/tanvir-hossen-bappy/" target="_blank" rel="noreferrer" className={styles.socialLink}>
             <LinkedinIcon /> LinkedIn
           </a>
-          <a href="https://ibss.com.bd" target="_blank" rel="noreferrer" className={styles.socialLink}>
+          <a href="https://ibssbd.com" target="_blank" rel="noreferrer" className={styles.socialLink}>
             <BriefcaseIcon /> IBSS
           </a>
         </div>
