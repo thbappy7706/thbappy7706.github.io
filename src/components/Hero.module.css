@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 2rem;
+  padding: 6rem 2rem 2rem;
   overflow: hidden;
 }
 
@@ -310,8 +310,8 @@
 
 @media (max-width: 768px) {
   .hero {
-    padding: 6rem 1.25rem 4rem;
-    min-height: auto;
+    padding: 7rem 1.25rem 4rem;
+    min-height: 100vh;
   }
 
   .profileImage {
@@ -368,7 +368,7 @@
 
 @media (max-width: 480px) {
   .hero {
-    padding-top: 5rem;
+    padding-top: 6rem;
   }
 
   .profileImage {

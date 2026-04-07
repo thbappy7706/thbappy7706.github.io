@@ -203,22 +203,31 @@
 
 @media (max-width: 768px) {
   .section {
-    padding: 5rem 1.5rem;
+    padding: 5rem 1.25rem;
   }
 
   .grid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1.25rem;
   }
 
   .sideGrid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1.25rem;
   }
 
   .sideSection {
     margin-top: 3rem;
     padding-top: 3rem;
+  }
+
+  .sideTitle {
+    font-size: 1.4rem;
+  }
+
+  .cardDesc,
+  .sideCardDesc {
+    font-size: 0.82rem;
   }
 }
 
