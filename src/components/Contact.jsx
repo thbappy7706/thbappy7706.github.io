@@ -21,7 +21,7 @@ export default function Contact() {
               I'm currently open to new opportunities — whether it's a full-time role,
               contract work, or an exciting collaboration. My inbox is always open.
             </p>
-            <a href="mailto:thbappy7706@gmail.com" className={styles.emailBtn}>
+            <a href="mailto:tanvirbappy7706@gmail.com" className={styles.emailBtn}>
               Say hello →
             </a>
           </div>
@@ -35,14 +35,14 @@ export default function Contact() {
                 handle="@thbappy7706"
               />
               <ContactLink
-                href="https://linkedin.com/in/tanvirhossenbappy"
+                href="https://www.linkedin.com/in/tanvir-hossen-bappy/"
                 label="LinkedIn"
-                handle="tanvirhossenbappy"
+                handle="tanvir-hossen-bappy"
               />
               <ContactLink
-                href="mailto:thbappy7706@gmail.com"
+                href="mailto:tanvirbappy7706@gmail.com"
                 label="Email"
-                handle="thbappy7706@gmail.com"
+                handle="tanvirbappy7706@gmail.com"
               />
               <ContactLink
                 href="https://ibss.com.bd"

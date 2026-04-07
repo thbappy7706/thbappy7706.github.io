@@ -2,7 +2,7 @@ import { useSectionTransition } from '../hooks/useSectionTransition'
 import styles from './About.module.css'
 
 const skills = [
-  { cat: 'Backend', items: ['Laravel', 'PHP', 'RESTful APIs', 'MySQL', 'PostgreSQL', 'Query Optimization'] },
+  { cat: 'Backend', items: ['Laravel', 'PHP', 'Golang', 'RESTful APIs', 'MySQL', 'PostgreSQL'] },
   { cat: 'Frontend', items: ['React', 'Vue.js', 'Alpine.js', 'Inertia.js', 'Livewire', 'Tailwind CSS'] },
   { cat: 'DevOps & Tools', items: ['Docker', 'Git', 'GitHub', 'CI/CD', 'Agile/Scrum', 'JetBrains'] },
 ]

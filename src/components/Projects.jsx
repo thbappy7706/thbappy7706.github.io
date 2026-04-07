@@ -6,10 +6,11 @@ import styles from './Projects.module.css'
 
 const featured = [
   {
-    title: 'Built to Last',
+    title: 'Comprohealth Analytics Platform',
     desc: 'Health analytics platform for audits and revenue management. Features real-time dashboards, reporting tools, and complex analytics for healthcare providers to streamline operations.',
     tags: ['Laravel', 'Livewire', 'Alpine.js', 'PHP'],
     category: 'Healthcare',
+    href: 'https://www.comprohealth.com/',
   },
   {
     title: 'Game Management Platform',
@@ -22,18 +23,21 @@ const featured = [
     desc: 'End-to-end e-commerce platform for server and hardware sales. Built with React and Inertia.js for a modern SPA experience with a robust Laravel backend.',
     tags: ['React', 'Inertia.js', 'Laravel', 'PHP'],
     category: 'E-Commerce',
+    href: 'https://www.ibssbd.com/',
   },
   {
     title: 'CWA Billing System',
     desc: 'Streamlines billing, invoicing, and client management for CWA International. Automates invoicing workflows, payment tracking, and client communication.',
     tags: ['Laravel', 'PHP', 'MySQL'],
     category: 'Finance',
+    href: 'https://www.cwa.international/',
   },
   {
-    title: 'BD Police Helpline Admin',
-    desc: 'Admin panel for managing incidents, calls, and operations for BD Police Helpline. Handles real-time incident tracking, operator assignment, and operational reporting.',
-    tags: ['Laravel', 'PHP', 'MySQL'],
-    category: 'Gov / Public Safety',
+    title: 'Nesco Complain Management System',
+    desc: 'Comprehensive complaint management system for NESCO (Northern Electricity Supply Company). Enables citizens to submit, track, and resolve electricity-related complaints efficiently.',
+    tags: ['Laravel', 'Livewire'],
+    category: 'Gov / Public Utility',
+    href: 'https://complain.nesco.gov.bd/',
   },
   {
     title: 'Analytics Visualization Panel',
@@ -46,6 +50,7 @@ const featured = [
     desc: 'Backend API and admin panel for managing menstrual health programs with secure role-based access, detailed report generation, and program analytics.',
     tags: ['Laravel', 'PHP', 'MySQL'],
     category: 'Health',
+    href: 'https://www.wateraid.org/bd/publications/menstrual-health-and-hygiene-journey-of-wateraid-bangladesh',
   },
   {
     title: 'Clinical Reference API',
@@ -56,6 +61,12 @@ const featured = [
 ]
 
 const sidehustles = [
+  {
+    title: 'QuestionCraft',
+    desc: 'Mobile-first Bangla exam question paper creator built as an installable PWA. Allows teachers to create, manage, and export structured question papers directly from their mobile devices.',
+    tags: ['React 19', 'TypeScript', 'Zustand', 'PWA'],
+    href: 'https://thbappy7706.github.io/bangla-question-maker/',
+  },
   {
     title: 'Real-Time Pizza Tracker',
     desc: 'Real-time order tracking system with live status updates using WebSockets. Features interactive order placement and status monitoring from preparation to delivery.',
@@ -162,7 +173,13 @@ function ProjectCard({ project, isVisible, delay }) {
     >
       <div className={styles.cardHeader}>
         <span className={styles.category}>{project.category}</span>
-        <FolderIcon />
+        {project.href ? (
+          <a href={project.href} target="_blank" rel="noreferrer" className={styles.sideCardLink}>
+            <ExternalIcon />
+          </a>
+        ) : (
+          <FolderIcon />
+        )}
       </div>
       <h3 className={styles.cardTitle}>{project.title}</h3>
       <p className={styles.cardDesc}>{project.desc}</p>
