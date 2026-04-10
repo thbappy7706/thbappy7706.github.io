@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import { useSectionTransition } from '../hooks/useSectionTransition'
 import styles from './Hero.module.css'
 
@@ -11,11 +12,21 @@ export default function Hero() {
       id="hero"
     >
       <div className={styles.gridLines} aria-hidden="true" />
+      <ParticleCanvas />
+      <ConfettiCanvas />
+
+      {/* Floating ambient orbs */}
+      <div className={styles.orbsContainer} aria-hidden="true">
+        <div className={`${styles.orb} ${styles.orb1}`} />
+        <div className={`${styles.orb} ${styles.orb2}`} />
+        <div className={`${styles.orb} ${styles.orb3}`} />
+      </div>
 
       <div className={styles.content}>
         {/* Profile Image */}
         <div className={styles.profileWrapper}>
           <div className={styles.profileRing}></div>
+          <div className={styles.profileRing2}></div>
           <div className={styles.profileImage}>
             <img src="/profile.png" alt="Tanvir Hossen Bappy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </div>
@@ -23,6 +34,10 @@ export default function Hero() {
             <span className={styles.dot} />
             Available
           </div>
+          {/* Sparkles around profile */}
+          {[...Array(6)].map((_, i) => (
+            <div key={i} className={`${styles.sparkle} ${styles['sparkle' + (i + 1)]}`} />
+          ))}
         </div>
 
         {/* Name & Title */}
@@ -74,7 +89,12 @@ export default function Hero() {
         </div>
       </div>
 
-
+      {/* Scroll hint */}
+      <div className={styles.scrollHint} aria-hidden="true">
+        <span className={styles.scrollLine} />
+        scroll
+        <span className={styles.scrollLine} />
+      </div>
     </section>
   )
 }
@@ -111,4 +131,127 @@ function BriefcaseIcon() {
       <path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/>
     </svg>
   )
+}
+
+/* ── Floating Particle Canvas ── */
+function ParticleCanvas() {
+  const canvasRef = useRef(null)
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    let animId
+    let particles = []
+
+    const resize = () => {
+      canvas.width = canvas.offsetWidth
+      canvas.height = canvas.offsetHeight
+      initParticles()
+    }
+
+    const initParticles = () => {
+      particles = []
+      const count = Math.min(90, Math.floor((canvas.width * canvas.height) / 10000))
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          r: Math.random() * 1.8 + 0.4,
+          dx: (Math.random() - 0.5) * 0.28,
+          dy: -(Math.random() * 0.45 + 0.08),
+          baseOpacity: Math.random() * 0.45 + 0.1,
+          phase: Math.random() * Math.PI * 2,
+          freq: Math.random() * 0.015 + 0.008,
+        })
+      }
+    }
+
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      const now = performance.now() / 1000
+      particles.forEach(p => {
+        const twinkle = p.baseOpacity * (0.55 + 0.45 * Math.sin(now * p.freq * 10 + p.phase))
+        ctx.beginPath()
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
+        ctx.fillStyle = `rgba(96,165,250,${twinkle})`
+        ctx.shadowBlur = 6
+        ctx.shadowColor = 'rgba(96,165,250,0.6)'
+        ctx.fill()
+        ctx.shadowBlur = 0
+        p.x += p.dx
+        p.y += p.dy
+        if (p.y < -4) { p.y = canvas.height + 4; p.x = Math.random() * canvas.width }
+        if (p.x < -4) p.x = canvas.width + 4
+        if (p.x > canvas.width + 4) p.x = -4
+      })
+      animId = requestAnimationFrame(draw)
+    }
+
+    const observer = new ResizeObserver(resize)
+    observer.observe(canvas)
+    resize()
+    draw()
+    return () => { cancelAnimationFrame(animId); observer.disconnect() }
+  }, [])
+  return <canvas ref={canvasRef} className={styles.particleCanvas} aria-hidden="true" />
+}
+
+/* ── Confetti Burst on Load ── */
+function ConfettiCanvas() {
+  const canvasRef = useRef(null)
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    const setSize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight }
+    setSize()
+    window.addEventListener('resize', setSize)
+
+    const colors = ['#60a5fa','#34d399','#f472b6','#fbbf24','#a78bfa','#fb923c','#38bdf8','#c084fc','#f87171']
+    let animId
+
+    const particles = Array.from({ length: 140 }, () => {
+      const angle = Math.random() * Math.PI * 2
+      const speed = Math.random() * 10 + 3
+      return {
+        x: canvas.width * 0.5 + (Math.random() - 0.5) * 120,
+        y: canvas.height * 0.27,
+        dx: Math.cos(angle) * speed,
+        dy: Math.sin(angle) * speed - 7,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        rotation: Math.random() * Math.PI * 2,
+        rotationSpeed: (Math.random() - 0.5) * 0.28,
+        gravity: 0.28,
+        opacity: 1,
+        w: Math.random() * 11 + 5,
+        h: Math.random() * 5 + 3,
+        shape: Math.random() > 0.38 ? 'rect' : 'circle',
+      }
+    })
+
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      let alive = false
+      particles.forEach(p => {
+        if (p.opacity <= 0) return
+        alive = true
+        p.dy += p.gravity; p.x += p.dx; p.y += p.dy
+        p.dx *= 0.992; p.rotation += p.rotationSpeed; p.opacity -= 0.007
+        ctx.save()
+        ctx.translate(p.x, p.y); ctx.rotate(p.rotation)
+        ctx.globalAlpha = Math.max(0, p.opacity); ctx.fillStyle = p.color
+        if (p.shape === 'rect') ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h)
+        else { ctx.beginPath(); ctx.arc(0, 0, p.h, 0, Math.PI * 2); ctx.fill() }
+        ctx.restore()
+      })
+      if (alive) animId = requestAnimationFrame(draw)
+    }
+
+    const timer = setTimeout(draw, 700)
+    return () => {
+      clearTimeout(timer); cancelAnimationFrame(animId)
+      window.removeEventListener('resize', setSize)
+    }
+  }, [])
+  return <canvas ref={canvasRef} className={styles.confettiCanvas} aria-hidden="true" />
 }

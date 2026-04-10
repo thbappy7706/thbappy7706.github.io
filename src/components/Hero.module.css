@@ -26,6 +26,68 @@
     linear-gradient(90deg, rgba(30, 58, 138, 0.04) 1px, transparent 1px);
 }
 
+/* Particle canvas */
+.particleCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Confetti canvas */
+.confettiCanvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* Floating ambient orbs */
+.orbsContainer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(50px);
+}
+
+.orb1 {
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(96, 165, 250, 0.13) 0%, transparent 70%);
+  top: 5%;
+  left: -5%;
+  animation: floatOrb1 14s ease-in-out infinite;
+}
+
+.orb2 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(52, 211, 153, 0.10) 0%, transparent 70%);
+  bottom: 10%;
+  right: -5%;
+  animation: floatOrb2 18s ease-in-out infinite;
+}
+
+.orb3 {
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(167, 139, 250, 0.09) 0%, transparent 70%);
+  top: 50%;
+  left: 65%;
+  animation: floatOrb3 22s ease-in-out infinite;
+}
+
 /* Accent glow blob */
 .hero::after {
   content: '';
@@ -74,6 +136,7 @@
   overflow: hidden;
   transition: transform 0.3s ease, border-color 0.3s ease;
   z-index: 2;
+  animation: profileGlow 3.5s ease-in-out infinite;
 }
 
 .profileImage:hover {
@@ -108,6 +171,41 @@
   animation: rotate 4s linear infinite;
   z-index: 1;
 }
+
+/* Second counter-rotating ring */
+.profileRing2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 230px;
+  height: 230px;
+  border-radius: 50%;
+  border: 1.5px solid transparent;
+  border-bottom-color: var(--accent);
+  border-left-color: var(--accent);
+  opacity: 0.2;
+  animation: rotateCounter 7s linear infinite;
+  z-index: 1;
+}
+
+/* Sparkles around profile */
+.sparkle {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px 2px var(--accent);
+  pointer-events: none;
+  z-index: 4;
+}
+.sparkle1 { top: -4px;   left: 50%;   animation: sparkleAnim 2.8s 0.0s ease-in-out infinite; }
+.sparkle2 { top: 15%;    right: -4px; animation: sparkleAnim 2.8s 0.5s ease-in-out infinite; }
+.sparkle3 { bottom: 10%; right: -4px; animation: sparkleAnim 2.8s 1.0s ease-in-out infinite; }
+.sparkle4 { bottom: -4px; left: 50%;  animation: sparkleAnim 2.8s 1.4s ease-in-out infinite; }
+.sparkle5 { bottom: 15%; left: -4px;  animation: sparkleAnim 2.8s 1.9s ease-in-out infinite; }
+.sparkle6 { top: 15%;    left: -4px;  animation: sparkleAnim 2.8s 2.3s ease-in-out infinite; }
 
 /* Status Badge */
 .statusBadge {
@@ -151,8 +249,13 @@
 }
 
 .accent {
-  color: var(--accent);
   position: relative;
+  background: linear-gradient(110deg, var(--accent) 0%, #a78bfa 45%, #38bdf8 70%, var(--accent) 100%);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmerText 4s linear infinite;
 }
 
 /* Role */
@@ -324,6 +427,11 @@
     height: 160px;
   }
 
+  .profileRing2 {
+    width: 186px;
+    height: 186px;
+  }
+
   .statusBadge {
     bottom: 5px;
     right: 5px;
@@ -381,6 +489,11 @@
     height: 140px;
   }
 
+  .profileRing2 {
+    width: 164px;
+    height: 164px;
+  }
+
   .name {
     font-size: 2rem;
   }
@@ -435,4 +548,48 @@
   50% {
     opacity: 0;
   }
+}
+
+/* ── New animation keyframes ── */
+
+@keyframes rotateCounter {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(-360deg); }
+}
+
+@keyframes profileGlow {
+  0%, 100% { box-shadow: 0 0 18px rgba(96, 165, 250, 0.20); }
+  50%       { box-shadow: 0 0 42px rgba(96, 165, 250, 0.55), 0 0 80px rgba(96, 165, 250, 0.18); }
+}
+
+@keyframes shimmerText {
+  to { background-position: 250% center; }
+}
+
+@keyframes sparkleAnim {
+  0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+  30%       { opacity: 1; transform: scale(1.3) rotate(45deg); }
+  60%       { opacity: 0.7; transform: scale(0.8) rotate(90deg); }
+}
+
+@keyframes floatOrb1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(40px, -30px) scale(1.05); }
+  66%       { transform: translate(-25px, 20px) scale(0.95); }
+}
+
+@keyframes floatOrb2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(-35px, 25px) scale(1.08); }
+  66%       { transform: translate(20px, -18px) scale(0.94); }
+}
+
+@keyframes floatOrb3 {
+  0%, 100% { transform: translate(0, 0); }
+  50%       { transform: translate(-30px, -40px); }
+}
+
+@keyframes profileRing2Pulse {
+  0%, 100% { opacity: 0.18; }
+  50%       { opacity: 0.38; }
 }
