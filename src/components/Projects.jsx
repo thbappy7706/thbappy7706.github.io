@@ -62,6 +62,12 @@ const featured = [
 
 const sidehustles = [
   {
+    title: 'Quran Bangla React',
+    desc: 'Full-featured Quran reading Progressive Web App in Bengali built with React. Fetches Quran data from an API with audio support, search, bookmarks, last-read tracking, and more.',
+    tags: ['React', 'PWA', 'API', 'Bengali'],
+    href: 'https://thbappy7706.github.io/quran-bangla-react/',
+  },
+  {
     title: 'QuestionCraft',
     desc: 'Mobile-first Bangla exam question paper creator built as an installable PWA. Allows teachers to create, manage, and export structured question papers directly from their mobile devices.',
     tags: ['React 19', 'TypeScript', 'Zustand', 'PWA'],
