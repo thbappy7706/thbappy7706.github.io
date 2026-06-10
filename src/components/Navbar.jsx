@@ -71,7 +71,7 @@ export default function Navbar({ theme, toggleTheme }) {
           <li>
             <a
               className={styles.resumeBtn}
-              href="https://drive.google.com/file/d/11ddwgG0_aRCPEuupsAGE7ePJMP8-IF7m/view?usp=drive_link"
+              href="https://drive.google.com/file/d/1EK3yu0GYRN8S2gNvxhthpC_C2i8RbX4S/view?usp=sharing"
               target="_blank"
               rel="noreferrer"
               onClick={() => setMenuOpen(false)}
