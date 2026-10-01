@@ -9,10 +9,10 @@ export default function Footer() {
           <span className={styles.dot}>◆</span>
         </p>
         <p className={styles.copy}>
-          Designed & built with care · {new Date().getFullYear()}
+          Building intelligent web experiences · React · Inertia.js · Modern Web APIs · {new Date().getFullYear()}
         </p>
         <p className={styles.stack}>
-          React · Vite · Deployed on GitHub Pages
+          React · Inertia.js · Web APIs · PWA · Deployed on GitHub Pages
         </p>
       </div>
     </footer>

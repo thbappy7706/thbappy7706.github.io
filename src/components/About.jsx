@@ -2,9 +2,10 @@ import { useSectionTransition } from '../hooks/useSectionTransition'
 import styles from './About.module.css'
 
 const skills = [
-  { cat: 'Backend', items: ['Laravel', 'PHP', 'Golang', 'RESTful APIs', 'MySQL', 'PostgreSQL'] },
-  { cat: 'Frontend', items: ['React', 'Vue.js', 'Alpine.js', 'Inertia.js', 'Livewire', 'Tailwind CSS'] },
-  { cat: 'DevOps & Tools', items: ['Docker', 'Git', 'GitHub', 'CI/CD', 'Agile/Scrum', 'JetBrains'] },
+  { cat: 'Web Development', items: ['React 19', 'Next.js', 'Vue.js', 'Inertia.js', 'Livewire', 'Alpine.js', 'TypeScript'] },
+  { cat: 'Backend & APIs', items: ['Laravel', 'PHP 8.x', 'Node.js', 'RESTful APIs', 'GraphQL', 'WebSockets', 'MySQL'] },
+  { cat: 'AI & Intelligence', items: ['LLM Integration', 'AI APIs', 'Data Pipelines', 'Real-time Analytics', 'FilamentPHP', 'Chart.js'] },
+  { cat: 'Tools & DevOps', items: ['Docker', 'Git', 'GitHub Actions', 'CI/CD', 'Vite', 'Agile/Scrum'] },
 ]
 
 export default function About() {
@@ -18,26 +19,23 @@ export default function About() {
         <div className={styles.grid}>
           <div className={styles.bio}>
             <p>
-              I'm a Full Stack Developer based in Bangladesh with{' '}
-              <span className={styles.highlight}>4.5+ years</span> of hands-on experience
-              building production-grade web applications. Currently, I'm at{' '}
+              I'm a Full Stack Engineer based in Bangladesh passionate about the{' '}
+              <span className={styles.highlight}>AI-powered web</span> — building intelligent applications
+              that leverage modern web technologies, data pipelines, and emerging AI capabilities. Currently at{' '}
               <a href="https://ibss.com.bd" target="_blank" rel="noreferrer" className={styles.link}>
                 IBSS
               </a>{' '}
-              as a Backend Developer, where I architect and maintain scalable systems
-              that power real business operations.
+              where I architect scalable web systems that power real business operations.
             </p>
             <p>
-              My focus is on writing clean, maintainable code and building systems that
-              perform under pressure. I care deeply about{' '}
-              <span className={styles.highlight}>system architecture</span>,{' '}
-              database optimization, and the craftsmanship of software — the kind that's
-              easy to reason about three years later.
+              My focus is on the intersection of <span className={styles.highlight}>web development and intelligent systems</span>.
+              I build performant, data-driven applications with modern frameworks — React, Inertia.js, Laravel —
+              and integrate AI-ready features like intelligent APIs, real-time data, and LLM-powered tools.
             </p>
             <p>
-              When I'm not writing code, I'm exploring new frameworks, contributing to
-              open-source projects, or studying software design patterns. I hold a BSc in
-              Computer Science and Engineering from Daffodil International University.
+              When I'm not shipping code, I'm exploring web AI integrations, building developer tools,
+              or contributing to open-source. I hold a BSc in Computer Science and Engineering from
+              Daffodil International University.
             </p>
 
             <div className={styles.stats}>
@@ -46,12 +44,12 @@ export default function About() {
                 <span className={styles.statLabel}>Years experience</span>
               </div>
               <div className={styles.stat}>
-                <span className={styles.statNum}>12+</span>
-                <span className={styles.statLabel}>Projects shipped</span>
+                <span className={styles.statNum}>15+</span>
+                <span className={styles.statLabel}>Web projects</span>
               </div>
               <div className={styles.stat}>
-                <span className={styles.statNum}>3</span>
-                <span className={styles.statLabel}>Companies</span>
+                <span className={styles.statNum}>10+</span>
+                <span className={styles.statLabel}>AI-ready tools</span>
               </div>
             </div>
           </div>

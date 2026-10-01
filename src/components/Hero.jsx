@@ -13,7 +13,6 @@ export default function Hero() {
     >
       <div className={styles.gridLines} aria-hidden="true" />
       <ParticleCanvas />
-      <ConfettiCanvas />
 
       {/* Floating ambient orbs */}
       <div className={styles.orbsContainer} aria-hidden="true">
@@ -32,7 +31,7 @@ export default function Hero() {
           </div>
           <div className={styles.statusBadge}>
             <span className={styles.dot} />
-            Available
+            Open to opportunities
           </div>
           {/* Sparkles around profile */}
           {[...Array(6)].map((_, i) => (
@@ -46,15 +45,15 @@ export default function Hero() {
         </h1>
 
         <p className={styles.role}>
-          Full Stack Developer
+          Full Stack Engineer · AI-Web Integration Specialist
           <span className={styles.cursor} aria-hidden="true" />
         </p>
 
         {/* Description */}
         <p className={styles.desc}>
-            Crafting high-performance, scalable web applications.
-          I turn complex problems into clean, elegant software — from API architecture
-          to polished user interfaces.
+          Crafting high-performance, intelligent web applications at the intersection of modern web tech and AI.
+           I turn complex problems into clean, elegant software — from API architecture to polished user interfaces.
+          
         </p>
 
         {/* CTA Buttons */}
@@ -64,14 +63,14 @@ export default function Hero() {
             className={styles.btnPrimary}
             onClick={e => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }) }}
           >
-            Get in touch
+            Let's collaborate
           </a>
           <a
             href="#projects"
             className={styles.btnSecondary}
             onClick={e => { e.preventDefault(); document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }) }}
           >
-            View work <span>↓</span>
+            Explore projects <span>↓</span>
           </a>
         </div>
 
@@ -173,9 +172,9 @@ function ParticleCanvas() {
         const twinkle = p.baseOpacity * (0.55 + 0.45 * Math.sin(now * p.freq * 10 + p.phase))
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(96,165,250,${twinkle})`
+        ctx.fillStyle = `rgba(129,140,248,${twinkle})`
         ctx.shadowBlur = 6
-        ctx.shadowColor = 'rgba(96,165,250,0.6)'
+        ctx.shadowColor = 'rgba(129,140,248,0.6)'
         ctx.fill()
         ctx.shadowBlur = 0
         p.x += p.dx
@@ -194,64 +193,4 @@ function ParticleCanvas() {
     return () => { cancelAnimationFrame(animId); observer.disconnect() }
   }, [])
   return <canvas ref={canvasRef} className={styles.particleCanvas} aria-hidden="true" />
-}
-
-/* ── Confetti Burst on Load ── */
-function ConfettiCanvas() {
-  const canvasRef = useRef(null)
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const ctx = canvas.getContext('2d')
-    const setSize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight }
-    setSize()
-    window.addEventListener('resize', setSize)
-
-    const colors = ['#60a5fa','#34d399','#f472b6','#fbbf24','#a78bfa','#fb923c','#38bdf8','#c084fc','#f87171']
-    let animId
-
-    const particles = Array.from({ length: 140 }, () => {
-      const angle = Math.random() * Math.PI * 2
-      const speed = Math.random() * 10 + 3
-      return {
-        x: canvas.width * 0.5 + (Math.random() - 0.5) * 120,
-        y: canvas.height * 0.27,
-        dx: Math.cos(angle) * speed,
-        dy: Math.sin(angle) * speed - 7,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        rotation: Math.random() * Math.PI * 2,
-        rotationSpeed: (Math.random() - 0.5) * 0.28,
-        gravity: 0.28,
-        opacity: 1,
-        w: Math.random() * 11 + 5,
-        h: Math.random() * 5 + 3,
-        shape: Math.random() > 0.38 ? 'rect' : 'circle',
-      }
-    })
-
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-      let alive = false
-      particles.forEach(p => {
-        if (p.opacity <= 0) return
-        alive = true
-        p.dy += p.gravity; p.x += p.dx; p.y += p.dy
-        p.dx *= 0.992; p.rotation += p.rotationSpeed; p.opacity -= 0.007
-        ctx.save()
-        ctx.translate(p.x, p.y); ctx.rotate(p.rotation)
-        ctx.globalAlpha = Math.max(0, p.opacity); ctx.fillStyle = p.color
-        if (p.shape === 'rect') ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h)
-        else { ctx.beginPath(); ctx.arc(0, 0, p.h, 0, Math.PI * 2); ctx.fill() }
-        ctx.restore()
-      })
-      if (alive) animId = requestAnimationFrame(draw)
-    }
-
-    const timer = setTimeout(draw, 700)
-    return () => {
-      clearTimeout(timer); cancelAnimationFrame(animId)
-      window.removeEventListener('resize', setSize)
-    }
-  }, [])
-  return <canvas ref={canvasRef} className={styles.confettiCanvas} aria-hidden="true" />
 }
